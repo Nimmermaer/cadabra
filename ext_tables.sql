@@ -165,7 +165,7 @@ CREATE TABLE tx_cadabra_domain_model_attribute (
 	name varchar(255) DEFAULT '' NOT NULL,
 	attribute_values int(11) DEFAULT '0' NOT NULL,
 	information int(11) DEFAULT '0' NOT NULL,
-	priceInfluencer int(11) DEFAULT '0' NOT NULL,
+	price_influencer int(11) DEFAULT '0' NOT NULL,
 	products int(11) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),

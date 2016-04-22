@@ -6,7 +6,7 @@ namespace Abra\Cadabra\Domain\Model\Ordering;
      *
      *  Copyright notice
      *
-     *  (c) 2015 Marcel Wieser <typo3dev@marcel-wieser.de>
+     *  (c) 2016 Marcel Wieser <typo3dev@marcel-wieser.de>
      *
      *  All rights reserved
      *
@@ -33,5 +33,46 @@ namespace Abra\Cadabra\Domain\Model\Ordering;
 class OrderableArticle extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
+    /**
+     * @var \Abra\Cadabra\Domain\Model\Article
+     */
+    protected $article;
+
+    /**
+     * @var integer
+     */
+    protected $amount;
+
+    /**
+     * @return \Abra\Cadabra\Domain\Model\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param \Abra\Cadabra\Domain\Model\Article $article
+     */
+    public function setArticle($article)
+    {
+        $this->article = $article;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param int $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
 
 }

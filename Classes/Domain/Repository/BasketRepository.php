@@ -1,56 +1,50 @@
 <?php
-namespace Abra\Cadabra\Controller;
+namespace Abra\Cadabra\Domain\Repository;
 
     /***************************************************************
-     *
      *  Copyright notice
-     *
-     *  (c) 18.02.2016  Michael <michael.blunck@phth.de>, PHTH
+     *  (c) 2016 Marcel Wieser <typo3dev@marcel-wieser.de>
      *
      *  All rights reserved
-     *
      *  This script is part of the TYPO3 project. The TYPO3 project is
      *  free software; you can redistribute it and/or modify
      *  it under the terms of the GNU General Public License as published by
      *  the Free Software Foundation; either version 3 of the License, or
      *  (at your option) any later version.
-     *
      *  The GNU General Public License can be found at
      *  http://www.gnu.org/copyleft/gpl.html.
-     *
      *  This script is distributed in the hope that it will be useful,
      *  but WITHOUT ANY WARRANTY; without even the implied warranty of
      *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      *  GNU General Public License for more details.
-     *
      *  This copyright notice MUST APPEAR in all copies of the script!
-     *  Created by PhpStorm.
-     ******************************************************************/
+     ***************************************************************/
 
 /**
- * Class ActionController
- * @package Abra\Cadabra\Controller
+ * The repository for baskets
  */
-class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class BasketRepository extends AbstractRepository
 {
-    /**
-     * @var \Abra\Cadabra\Service\FrontendUserService
-     * @inject
-     */
-    protected $frontendUserService;
 
     /**
-     * @var \Abra\Cadabra\Domain\Model\FrontendUser
-     */
-    protected $frontendUser;
-
-    /**
+     * @param \Abra\Cadabra\Domain\Model\FrontendUser $frontendUser
+     * @param string $type
      *
+     * @return \Abra\Cadabra\Domain\Model\Basket
      */
-    public function initializeAction()
+    public function findByFrontendUserAndType($frontendUser, $type)
     {
-        parent::initializeAction();
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd(
+                array(
+                    $query->equals('frontendUser', $frontendUser->getUid()),
+                    $query->equals('type', $type)
+                )
+            )
+        );
 
-        $this->frontendUser = $this->frontendUserService->create();
+        return $query->execute()->getFirst();
     }
+
 }

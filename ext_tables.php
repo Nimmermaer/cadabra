@@ -25,14 +25,19 @@ if (TYPO3_MODE === 'BE') {
 
 }
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    $_EXTKEY,
+    'Abra.' . $_EXTKEY,
     'Article',
     'LLL:EXT:cadabra/Resources/Private/Language/locallang_ce.xlf:cadabra_article'
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    $_EXTKEY,
+    'Abra.' . $_EXTKEY,
     'Product',
     'LLL:EXT:cadabra/Resources/Private/Language/locallang_ce.xlf:cadabra_product'
+);
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'Abra.' . $_EXTKEY,
+    'Basket',
+    'LLL:EXT:cadabra/Resources/Private/Language/locallang_ce.xlf:cadabra_basket'
 );
 
 
@@ -152,6 +157,16 @@ $GLOBALS['TCA']['tt_content']['types']['cadabra_article']['showitem'] =
 ), 'CType', 'cadabra');
 
 $GLOBALS['TCA']['tt_content']['types']['cadabra_product']['showitem'] =
+    'CType;;cadabra_general-element-properties;1-1-1,
+     --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.header;header,
+    --div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access,--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.visibility; visibility,starttime, endtime';
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(array(
+    'LLL:EXT:cadabra/Resources/Private/Language/locallang_ce.xlf:cadabra_basket',
+    'cadabra_basket'
+), 'CType', 'cadabra');
+
+$GLOBALS['TCA']['tt_content']['types']['cadabra_basket']['showitem'] =
     'CType;;cadabra_general-element-properties;1-1-1,
      --palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.header;header,
     --div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.access,--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.visibility; visibility,starttime, endtime';

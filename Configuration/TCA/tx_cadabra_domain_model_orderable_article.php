@@ -134,12 +134,13 @@ return array(
         'article' => array(
             'label' => 'LLL:EXT:cadabra/Resources/Private/Language/locallang_db.xlf:orderable_article.article',
             'config' => array(
-                'type' => 'inline',
+                'type' => 'select',
                 'foreign_table' => 'tx_cadabra_domain_model_article',
-                'foreign_field' => 'article',
-                'size' => 10,
-                'autoSizeMax' => 50,
-                'maxitems' => 9999,
+                'size' => 1,
+                'autoSizeMax' => 1,
+                'minitems' => 0,
+                'maxitems' => 1,
+
             ),
         ),
 
